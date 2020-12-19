@@ -90,19 +90,22 @@
           $('#errors').html('<p> Failed to call FHIR Service </p>');
         }
       );
-      function createCORSRequest(method, url){
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr){
-        // XHR has 'withCredentials' property only if it supports CORS
-        xhr.open(method, url, true);
-    } else if (typeof XDomainRequest != "undefined"){ // if IE use XDR
-        xhr = new XDomainRequest();
-        xhr.open(method, url);
-    } else {
-        xhr = null;
-    }
-    return xhr;
-}
+    var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer "+ token);
+
+var requestOptions = {
+    
+    method: 'GET',
+    headers: myHeaders,
+    Vary: 'Origin',
+};
+const proxyurl = "https://fhir-ehr-code.cerner.com/";
+const url = "your url";
+
+fetch(proxyurl + url, requestOptions)
+    .then(response => response.json())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
     </script>
   </body>
 </html>
