@@ -90,22 +90,8 @@
           $('#errors').html('<p> Failed to call FHIR Service </p>');
         }
       );
-    var myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer "+ token);
-
-var requestOptions = {
-    
-    method: 'GET',
-    headers: myHeaders,
-    Vary: 'Origin',
-};
-const proxyurl = "https://fhir-ehr-code.cerner.com/";
-const url = "your url";
-
-fetch(proxyurl + url, requestOptions)
-    .then(response => response.json())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+   var httpRequest = new XMLHttpRequest();
+httpRequest.setRequestHeader( 'Access-Control-Allow-Origin', '*');
     </script>
   </body>
 </html>
