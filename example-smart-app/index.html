@@ -90,6 +90,10 @@
           $('#errors').html('<p> Failed to call FHIR Service </p>');
         }
       );
+      fetch('https://fhir-ehr-code.cerner.com', {
+  method: 'GET',
+  headers: { 'Content-Type': 'application/json'}
+});
     </script>
   </body>
 </html>
